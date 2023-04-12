@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express, {response, Router} from "express";
 import { NextFunction, Request, Response } from "express";
 import { Openai } from "./langchain/openai.js";
 
@@ -7,8 +7,9 @@ const router: Router = express.Router();
 router.post(
   "/question/send",
   async (req: Request, res: Response) => {
-    const { question }: any = req.body
-    return await Openai.RunBasicCommand(question)
+      console.log(req.body)
+    const question : any = req.body
+    return res.send(await Openai.RunBasicCommand(question))
   }
 );
 
